@@ -15,4 +15,4 @@ PHP >=7.1.3.
 
 ### Installing
 
-composer require barcat/tikkie
+`composer require barcat/tikkie`
