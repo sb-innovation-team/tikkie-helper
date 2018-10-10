@@ -44,11 +44,12 @@ class TikkieController extends Controller
             'exp' => $epochExp,
             'iss' => 'me',
             'sub' => SELF::CONSUMER_KEY,
+            //When production, change AUD value to production URL
             'aud' => 'https://auth-sandbox.abnamro.com/oauth/token',
         ];
 
         //sign with RS256
-        $privateKeyPath = "/var/www/spar_bags/app/keys/private_rsa.pem";
+        $privateKeyPath = "pathToPrivateKey";
 
         $key = JWKFactory::createFromKeyFile($privateKeyPath);
 
