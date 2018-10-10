@@ -16,6 +16,8 @@ class TikkieController extends Controller
 
     const CONSUMER_KEY = "";
     const CONSUMER_SECRET = "";
+    // Change host when production
+    const HOST = "https://api-sandbox.abnamro.com/";
 
 
     /**
@@ -25,7 +27,7 @@ class TikkieController extends Controller
     private function generateJSONToken()
     {
 
-        $url = "https://api-sandbox.abnamro.com/v1/oauth/token";
+        $url = SELF::HOST . "v1/oauth/token";
 
         $client = new Client();
 
@@ -67,7 +69,7 @@ class TikkieController extends Controller
     public function authenticate()
     {
 
-        $url = "https://api-sandbox.abnamro.com/v1/oauth/token";
+        $url = SELF::HOST . "v1/oauth/token";
 
         $client = new Client();
 
@@ -109,7 +111,7 @@ class TikkieController extends Controller
     public function createPlatform($name,$phoneNumber,$email)
     {
 
-        $url = "https://api-sandbox.abnamro.com/v1/tikkie/platforms";
+        $url = SELF::HOST . "v1/tikkie/platforms";
 
         $client = new Client();
 
@@ -144,7 +146,7 @@ class TikkieController extends Controller
      */
     public function getPlatforms($authToken)
     {
-        $url = "https://api-sandbox.abnamro.com/v1/tikkie/platforms";
+        $url = SELF::HOST . "v1/tikkie/platforms";
 
         $client = new Client();
 
@@ -174,7 +176,7 @@ class TikkieController extends Controller
         $authToken = $this->authenticate();
         $platformToken = $this->getPlatforms($authToken)[0]->platformToken;
 
-        $url = "https://api-sandbox.abnamro.com/v1/tikkie/platforms/" . $platformToken . "/users";
+        $url = SELF::HOST . "v1/tikkie/platforms/" . $platformToken . "/users";
 
         $client = new Client();
 
@@ -212,7 +214,7 @@ class TikkieController extends Controller
     {
         $platformToken = $this->getPlatforms($authToken)[0]->platformToken;
 
-        $url = "https://api-sandbox.abnamro.com/v1/tikkie/platforms/" . $platformToken . "/users";
+        $url = SELF::HOST . "v1/tikkie/platforms/" . $platformToken . "/users";
 
         $client = new Client();
 
@@ -244,7 +246,7 @@ class TikkieController extends Controller
         $bankAccountToken = $this->getUsers($authToken)[0]->bankAccounts[0]->bankAccountToken;
 
 
-        $url = "https://api-sandbox.abnamro.com/v1/tikkie/platforms/$platformToken/users/$userToken/bankaccounts/$bankAccountToken/paymentrequests";
+        $url = SELF::HOST . "v1/tikkie/platforms/$platformToken/users/$userToken/bankaccounts/$bankAccountToken/paymentrequests";
 
         $client = new Client();
 
@@ -284,7 +286,7 @@ class TikkieController extends Controller
         $authToken = $this->authenticate();
         $platformToken = $this->getPlatforms($authToken)[0]->platformToken;
         $userToken = $this->getUsers($authToken)[0]->userToken;
-        $url = "https://api-sandbox.abnamro.com//v1/tikkie/platforms/$platformToken/users/$userToken/paymentrequests/$paymentRequestToken";
+        $url = SELF::HOST . "v1/tikkie/platforms/$platformToken/users/$userToken/paymentrequests/$paymentRequestToken";
         $client = new Client();
 
         $headers = [
